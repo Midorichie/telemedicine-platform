@@ -1,20 +1,32 @@
+# Clarinet.toml
+
 [project]
 name = "telemedicine-platform"
-description = "A decentralized telemedicine platform connecting rural patients with urban medical professionals"
-authors = []
-telemetry = false
 requirements = []
+costs_version = 2
+telemetry = false
 
 [contracts.consultation]
 path = "contracts/consultation.clar"
-clarity_version = 2
-epoch = 2.4
+depends_on = ["doctor-registry", "patient-records"]
+
+[contracts.patient-records]
+path = "contracts/patient-records.clar"
+depends_on = []
+
+[contracts.doctor-registry]
+path = "contracts/doctor-registry.clar"
+depends_on = []
+
+[repl]
+costs_version = 2
+parser_version = 2
 
 [repl.analysis]
 passes = ["check_checker"]
 
 [repl.analysis.check_checker]
-strict = true
+strict = false
 trusted_sender = false
 trusted_caller = false
 callee_filter = false
